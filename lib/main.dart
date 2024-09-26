@@ -6,8 +6,14 @@ import 'package:david_portfolio_app/src/view/pages/welcome_page.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Ocultar las barras de sistema
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  // UP BAR TRANSPARENT
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.dark
+  ));
+
+  // DEVICE ORIENTATION
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   runApp(const MyApp());
 }
