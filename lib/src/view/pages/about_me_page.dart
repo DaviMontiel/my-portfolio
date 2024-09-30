@@ -1,6 +1,8 @@
 import 'package:david_portfolio_app/src/model/enums/about_me_section_enum.dart';
+import 'package:david_portfolio_app/src/view/pages/about_me/academic_section_widget.dart';
 import 'package:david_portfolio_app/src/view/pages/about_me/experience_section_widget.dart';
 import 'package:david_portfolio_app/src/view/pages/about_me/hello_section_widget.dart';
+import 'package:david_portfolio_app/src/view/pages/about_me/hobbies_section_widget.dart';
 import 'package:flutter/material.dart';
 
 class AboutMePage extends StatefulWidget {
@@ -30,11 +32,31 @@ class _AboutMePageState extends State<AboutMePage> {
       body: SafeArea(
         child: Column(
           children: [
-        
-            _showMenu(),
-
-            _showContent(),
-        
+            Expanded(
+              child: CustomScrollView(
+                slivers: [
+                  SliverAppBar(
+                    expandedHeight: 240,
+                    floating: false,
+                    collapsedHeight: 80,
+                    automaticallyImplyLeading: false,
+                    backgroundColor: const Color.fromRGBO(125, 201, 211, 1),
+                    surfaceTintColor: const Color.fromRGBO(125, 201, 211, 1),
+                    flexibleSpace: FlexibleSpaceBar(
+                      background: Container(
+                        color: const Color.fromRGBO(125, 201, 211, 1),
+                        child: _showMenu(),
+                      ),
+                    ),
+                  ),
+            
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: _showContent(),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -149,29 +171,21 @@ class _AboutMePageState extends State<AboutMePage> {
   Widget _showContent() {
     Map<AboutMeSection, Widget> contents = {
       AboutMeSection.hello: const HelloSectionWidget(),
-      AboutMeSection.experience: const ExperiencieSectionWidget(),
-      AboutMeSection.academmic: const HelloSectionWidget(),
-      AboutMeSection.hobbies: const HelloSectionWidget(),
+      AboutMeSection.experience: ExperiencieSectionWidget(),
+      AboutMeSection.academmic: const AcademicSectionWidget(),
+      AboutMeSection.hobbies: const HobbiesSectionWidget(),
     };
 
-    return Expanded(
-      child: Row(
-        children: [
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(30),
-              decoration: const BoxDecoration(
-                color: Color.fromRGBO(244, 248, 252, 1),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(40),
-                  topRight: Radius.circular(40),
-                ),
-              ),
-              child: contents[_currentSection],
-            ),
-          ),
-        ],
+    return Container(
+      padding: const EdgeInsets.all(30),
+      decoration: const BoxDecoration(
+        color: Color.fromRGBO(244, 248, 252, 1),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(40),
+          topRight: Radius.circular(40),
+        ),
       ),
+      child: contents[_currentSection],
     );
   }
 

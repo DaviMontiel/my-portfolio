@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:david_portfolio_app/src/controller/external_controller.dart';
 
 import 'package:david_portfolio_app/src/model/enums/about_me_section_enum.dart';
 import 'package:david_portfolio_app/src/view/pages/about_me_page.dart';
@@ -199,26 +200,29 @@ class _MainPageState extends State<MainPage> {
                           ],
                         ),
                                     
-                        Container(
-                          decoration: const BoxDecoration(
-                            color: Color.fromRGBO(189, 131, 255, 1),
-                            borderRadius: BorderRadius.all(Radius.circular(25)),
-                          ),
-                          width: 150,
-                          height: 55,
-                          child: const Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox( height: 5 ),
-                              Text(
-                                'Contact me',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontFamily: 'Gilroy-Bold-120',
+                        GestureDetector(
+                          onTap: () => externalController.makePhoneCall('633054283'),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: Color.fromRGBO(189, 131, 255, 1),
+                              borderRadius: BorderRadius.all(Radius.circular(25)),
+                            ),
+                            width: 150,
+                            height: 55,
+                            child: const Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox( height: 5 ),
+                                Text(
+                                  'Contact me',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontFamily: 'Gilroy-Bold-120',
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ],
