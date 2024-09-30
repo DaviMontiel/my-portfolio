@@ -44,6 +44,10 @@ flutter:
       fonts:
         - asset: lib/assets/fonts/Gilroy-Bold-120.otf
           weight: 600
+    - family: Gilroy-Bold
+      fonts:
+        - asset: lib/assets/fonts/Gilroy-Bold.ttf
+          weight: 600
   
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

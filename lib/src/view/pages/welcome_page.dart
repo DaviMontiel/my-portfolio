@@ -1,3 +1,5 @@
+import 'package:david_portfolio_app/src/view/pages/main_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -26,11 +28,29 @@ class _WelcomePageState extends State<WelcomePage> with SingleTickerProviderStat
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
     
     Future.delayed(const Duration(milliseconds: 1000), () {
+      if (!mounted) return;
+
       _isVisible = true;
       _controller.forward();
 
       setState(() {});
     });
+
+    Future.delayed(const Duration(milliseconds: 3000), () {
+      if (!mounted) return;
+
+      Navigator.of(context).pushReplacement(
+        CupertinoPageRoute(
+          builder: (context) => const MainPage(),
+        ),
+      );
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -38,10 +58,17 @@ class _WelcomePageState extends State<WelcomePage> with SingleTickerProviderStat
     Size screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Scaffold(
-        body: Stack(
+      body: GestureDetector(
+        onTap: () {
+          Navigator.of(context).pushReplacement(
+            CupertinoPageRoute(
+              builder: (context) => const MainPage(),
+            ),
+          );
+        },
+        child: Stack(
           children: [
-      
+            
             // BACKGROUND
             Container(
               decoration: const BoxDecoration(
@@ -55,7 +82,7 @@ class _WelcomePageState extends State<WelcomePage> with SingleTickerProviderStat
                 ),
               ),
             ),
-
+        
             // TEXT
             LayoutBuilder(
               builder: (context, constraints) {
@@ -88,7 +115,7 @@ class _WelcomePageState extends State<WelcomePage> with SingleTickerProviderStat
                 );
               },
             ),
-
+        
             // IMG
             Positioned(
               bottom: 0,
@@ -101,7 +128,6 @@ class _WelcomePageState extends State<WelcomePage> with SingleTickerProviderStat
                 ),
               )
             ),
-      
           ],
         ),
       ),
