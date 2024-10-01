@@ -1,10 +1,16 @@
+import 'package:david_portfolio_app/src/controller/language_controller.dart';
+import 'package:david_portfolio_app/src/model/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:david_portfolio_app/src/view/pages/welcome_page.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // INIT
+  await preferences.init();
+  await languageController.init();
 
   // UP BAR TRANSPARENT
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -26,20 +32,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-        pageTransitionsTheme: const PageTransitionsTheme(
-          builders: {
-            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-          },
+    return ListenableBuilder(
+      listenable: languageController,
+      builder: (context, child) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+          pageTransitionsTheme: const PageTransitionsTheme(
+            builders: {
+              TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+              TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+            },
+          ),
         ),
+        home: const WelcomePage(),
       ),
-      home: const WelcomePage(),
     );
   }
 }

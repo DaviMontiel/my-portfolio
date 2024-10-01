@@ -1,7 +1,8 @@
 import 'dart:ui';
 import 'package:david_portfolio_app/src/controller/external_controller.dart';
+import 'package:david_portfolio_app/src/controller/language_controller.dart';
 
-import 'package:david_portfolio_app/src/model/enums/about_me_section_enum.dart';
+import 'package:david_portfolio_app/src/view/pages/about_me/enums/about_me_section_enum.dart';
 import 'package:david_portfolio_app/src/view/pages/about_me_page.dart';
 import 'package:david_portfolio_app/src/view/widgets/pages/quit_go_back_drag.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,18 +17,14 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
 
-  final List<String> jobTitles = [
-    'Multiplatform Developer',
-    'Proyect Manager',
-    'App Designer',
-  ];
-
   int currentIndex = 0;
   double opacity = 1.0;
+  late String currentLanguage;
 
 
   @override
   void initState() {
+    currentLanguage = languageController.locale.languageCode;
     super.initState();
 
     Future.delayed(const Duration(seconds: 3), _updateText);
@@ -37,8 +34,8 @@ class _MainPageState extends State<MainPage> {
     opacity = 0.0;
     _updateView();
 
-    Future.delayed(const Duration(seconds: 1), () {
-      currentIndex = (currentIndex + 1) % jobTitles.length;
+    Future.delayed(const Duration(milliseconds: 500), () {
+      currentIndex = (currentIndex + 1) % 3;
       opacity = 1.0;
 
       _updateView();
@@ -52,22 +49,28 @@ class _MainPageState extends State<MainPage> {
     final List<Map<String, dynamic>> links = [
       {
         'icon': Icons.work_outlined,
-        'text': ['know', 'my work'],
+        'text': [languageController.language.manPageText2_0, languageController.language.manPageText2_1],
         'color': const Color.fromRGBO(241, 152, 189, 1),
         'event': () => _openAboutSection(AboutMeSection.experience)
       },
       {
         'icon': Icons.quick_contacts_mail_outlined,
-        'text': ['about', 'me'],
+        'text': [languageController.language.manPageText3_0, languageController.language.manPageText3_1],
         'color': const Color.fromRGBO(125, 201, 211, 1),
         'event': () => _openAboutSection(AboutMeSection.hello)
       },
       {
         'icon': Icons.wechat_rounded,
-        'text': ['where', 'I am'],
+        'text': [languageController.language.manPageText4_0, languageController.language.manPageText4_1],
         'color': const Color.fromRGBO(158, 182, 239, 1),
         'event': () => _openAboutSection(AboutMeSection.hello)
       },
+    ];
+
+    List<String> jobTitles = [
+      languageController.language.job0,
+      languageController.language.job1,
+      languageController.language.job2,
     ];
 
     return Scaffold(
@@ -82,44 +85,80 @@ class _MainPageState extends State<MainPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 45, left: 20),
+                padding: const EdgeInsets.only(top: 45, left: 20, right: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // MENU BTN
-                    GestureDetector(
-                      onTap: () {
-                        print('-- toca');
-                      },
-                      child: Container(
-                        color: Colors.transparent,
-                        width: 25,
-                        height: 25,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            print('-- toca');
+                          },
+                          child: Container(
+                            color: Colors.transparent,
+                            width: 25,
+                            height: 25,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
-                                  color: Colors.black,
-                                  width: 18,
-                                  height: 2,
-                                ),
-                                const SizedBox( height: 4 ),
-                                Container(
-                                  color: Colors.black,
-                                  width: 12,
-                                  height: 2,
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      color: Colors.black,
+                                      width: 18,
+                                      height: 2,
+                                    ),
+                                    const SizedBox( height: 4 ),
+                                    Container(
+                                      color: Colors.black,
+                                      width: 12,
+                                      height: 2,
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
+
+                        PopupMenuButton<String>(
+                          menuPadding: EdgeInsets.zero,
+                          padding: EdgeInsets.zero,
+                          onSelected: (value) async {
+                            currentLanguage = value;
+                            await languageController.changeLanguage(value);
+
+                            setState(() {});
+                          },
+                          itemBuilder: (context) => languageController.getSupportedLocales().map((locale) {
+                            return PopupMenuItem<String>(
+                              value: locale.languageCode,
+                              child: Center(
+                                child: Image.asset(
+                                  'lib/assets/images/${locale.languageCode}_flag.png',
+                                  width: 35,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                          child: Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                            ),
+                            child: Image.asset('lib/assets/images/${currentLanguage}_flag.png', width: 35),
+                          ),
+                        )
+                      ],
                     ),
               
-                    const SizedBox( height: 25 ),
+                    const SizedBox( height: 5 ),
               
                     // NAME
                     const Text(
@@ -134,7 +173,7 @@ class _MainPageState extends State<MainPage> {
                     // WORK
                     AnimatedOpacity(
                       opacity: opacity,
-                      duration: const Duration(milliseconds: 300),
+                      duration: const Duration(milliseconds: 200),
                       child: Text(
                         jobTitles[currentIndex],
                         style: const TextStyle(
@@ -178,20 +217,20 @@ class _MainPageState extends State<MainPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Can I help you?',
-                              style: TextStyle(
+                              languageController.language.manPageText0,
+                              style: const TextStyle(
                                 fontSize: 16,
                                 color: Color.fromRGBO(98, 114, 137, 1),
                                 fontFamily: 'Gilroy-Bold-120',
                               ),
                             ),
                             Text(
-                              'Let\'s work?',
-                              style: TextStyle(
+                              languageController.language.manPageText1,
+                              style: const TextStyle(
                                 fontSize: 22,
                                 color: Color.fromRGBO(51, 70, 100, 1),
                                 fontFamily: 'Gilroy-Bold',
@@ -209,13 +248,13 @@ class _MainPageState extends State<MainPage> {
                             ),
                             width: 150,
                             height: 55,
-                            child: const Column(
+                            child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SizedBox( height: 5 ),
+                                const SizedBox( height: 5 ),
                                 Text(
-                                  'Contact me',
-                                  style: TextStyle(
+                                  languageController.language.manPageBtn0,
+                                  style: const TextStyle(
                                     fontSize: 20,
                                     color: Colors.white,
                                     fontFamily: 'Gilroy-Bold-120',
@@ -233,62 +272,71 @@ class _MainPageState extends State<MainPage> {
                     Expanded(
                       child: ListView(
                         scrollDirection: Axis.horizontal,
-                        children: links.map((link) {
-                          return Row(
-                            children: [
-                              Container(
-                                height: 120,
-                                width: 110,
-                                decoration: BoxDecoration(
-                                  color: link['color'],
-                                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                                ),
-                                child: GestureDetector(
-                                  onTap: link['event'],
-                                  child: Container(
-                                    color: Colors.transparent,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 17, left: 15, bottom: 12),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Icon(
-                                            link['icon'],
-                                            color: Colors.white,
-                                          ),
-                                          Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                link['text'][0],
-                                                style: const TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.white,
-                                                  fontFamily: 'Gilroy-Bold',
+                        children: [
+                          for (int f=0; f<links.length; f++) ...[
+                            Row(
+                              children: [
+                                Container(
+                                  height: 120,
+                                  width: 110,
+                                  decoration: BoxDecoration(
+                                    color: links[f]['color'],
+                                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                  ),
+                                  child: GestureDetector(
+                                    onTap: links[f]['event'],
+                                    child: Container(
+                                      color: Colors.transparent,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top: 17, left: 15, bottom: 12),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Icon(
+                                              links[f]['icon'],
+                                              color: Colors.white,
+                                            ),
+                                            Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  links[f]['text'][0],
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.white,
+                                                    fontFamily: 'Gilroy-Bold',
+                                                  ),
                                                 ),
-                                              ),
-                                              Text(
-                                                link['text'][1],
-                                                style: const TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.white,
-                                                  fontFamily: 'Gilroy-Bold-120',
+                                                Text(
+                                                  links[f]['text'][1],
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.white,
+                                                    fontFamily: 'Gilroy-Bold-120',
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
-                                          )
-                                        ],
+                                              ],
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
+                              ],
+                            ),
+
+                            if (f != links.length - 1) const SizedBox(width: 20),
+                          ]
+                        ],
+                        // children: links.map((link) {
+                          // return 
               
-                              const SizedBox( width: 20 ),
-                            ],
-                          );
-                        }).toList(),
+                        //       const SizedBox( width: 20 ),
+                        //     ],
+                        //   );
+                        // }).toList(),
                       ),
                     ),
                   ],

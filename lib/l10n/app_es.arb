@@ -1,0 +1,29 @@
+{
+    "welcomeTitle": "Bienvenido",
+
+    "job0": "Desarrollador Multiplataforma",
+    "job1": "Coordinador de Proyectos",
+    "job2": "Diseñador de Apps",
+
+    "manPageText0": "¿Puedo ayudarte?",
+    "manPageText1": "¿Trabajamos?",
+    "manPageBtn0": "Contáctame",
+    "manPageText2_0": "conoce",
+    "manPageText2_1": "mi trabajo",
+    "manPageText3_0": "sobre",
+    "manPageText3_1": "mi",
+    "manPageText4_0": "de",
+    "manPageText4_1": "donde soy",
+
+    "aboutMeTitle": "Sobre mi",
+    "aboutMeSection0": "Hola",
+    "aboutMeSection1": "Trabajos",
+    "aboutMeSection2": "Estudios",
+    "aboutMeSection3": "Hobbies",
+
+    "experienceYearPresent": "Presente",
+    "experienceJob0Title": "Desarrollador Full Stack",
+    "experienceJob0Content": "Actualmente, trabajo como Desarrollador Full Stack de Nivel Medio, donde me especializo en la creación y mantenimiento de servidores, así como en el desarrollo de aplicaciones y servicios para diversos proyectos. Mis responsabilidades incluyen:\n\n  - Desarrollo de Aplicaciones: Diseñar, implementar y mantener aplicaciones web robustas y escalables utilizando tecnologías modernas tanto en el front-end como en el back-end.\n\n  - Creación de API: Desarrollar Interfaces de Programación de Aplicaciones (APIs) que faciliten la comunicación entre diferentes servicios y sistemas, garantizando su eficiencia y seguridad.\n\n  - Gestión de Bases de Datos: Diseñar y administrar bases de datos, optimizar consultas y asegurar la integridad y seguridad de los datos.\n\n  - Mantenimiento de Servidores: Configurar y gestionar servidores para garantizar un rendimiento óptimo, implementar medidas de seguridad y gestionar la escalabilidad según sea necesario.\n\n  - Colaboración en Proyectos: Trabajar estrechamente con otros miembros del equipo, incluidos diseñadores y gestores de proyectos, para garantizar la alineación con los objetivos del proyecto y la entrega oportuna de soluciones de calidad.\n\n  - Resolución de Problemas: Identificar y resolver problemas técnicos que puedan surgir durante el desarrollo y mantenimiento de aplicaciones y servicios.",
+    "experienceJob1Title": "Técnico en Sistemas Informáticos",
+    "experienceJob1Content": "En Vivatech, trabajé como Técnico en Sistemas Informáticos, centrándome en la reparación de computadoras, laptops y tablets. Mi rol incluía diagnosticar y solucionar problemas tanto de software como de hardware, asegurando que los dispositivos funcionaran de manera eficiente."
+}

@@ -1,0 +1,29 @@
+{
+    "welcomeTitle": "Welcome",
+
+    "job0": "Multiplatform Developer",
+    "job1": "Proyect Manager",
+    "job2": "App Designer",
+
+    "manPageText0": "Can I help you?",
+    "manPageText1": "Let's work?",
+    "manPageBtn0": "Contact me",
+    "manPageText2_0": "know",
+    "manPageText2_1": "my work",
+    "manPageText3_0": "about",
+    "manPageText3_1": "me",
+    "manPageText4_0": "where",
+    "manPageText4_1": "I am",
+    
+    "aboutMeTitle": "About me",
+    "aboutMeSection0": "Hello",
+    "aboutMeSection1": "Experience",
+    "aboutMeSection2": "Academic",
+    "aboutMeSection3": "Hobbies",
+
+    "experienceYearPresent": "Present",
+    "experienceJob0Title": "Full Stack Developer",
+    "experienceJob0Content": "Currently, I work as a Mid-Level Full Stack Developer, where I specialize in creating and maintaining servers, as well as developing applications and services for various projects. My responsibilities include:\n\n  - Application Development: Designing, implementing, and maintaining robust and scalable web applications using modern technologies on both the front-end and back-end. \n\n  - API Creation: Developing Application Programming Interfaces (APIs) that facilitate communication between different services and systems, ensuring their efficiency and security.\n\n  - Database Management: Designing and managing databases, optimizing queries, and ensuring the integrity and security of data.\n\n  - Server Maintenance: Configuring and managing servers to ensure optimal performance, implementing security measures, and managing scaling as needed.\n\n  - Project Collaboration: Working closely with other team members, including designers and project managers, to ensure alignment with project objectives and timely delivery of quality solutions.\n\n  - Problem Resolution: Identifying and resolving technical issues that may arise during the development and maintenance of applications and services.",
+    "experienceJob1Title": "Computer Systems Technician",
+    "experienceJob1Content": "At Vivatech, I worked as a Computer Technician, focusing on the repair of computers, laptops, and tablets. My role involved diagnosing and troubleshooting both software and hardware issues, ensuring that the devices operated efficiently."
+}

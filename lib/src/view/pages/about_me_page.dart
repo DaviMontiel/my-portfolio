@@ -1,4 +1,5 @@
-import 'package:david_portfolio_app/src/model/enums/about_me_section_enum.dart';
+import 'package:david_portfolio_app/src/controller/language_controller.dart';
+import 'package:david_portfolio_app/src/view/pages/about_me/enums/about_me_section_enum.dart';
 import 'package:david_portfolio_app/src/view/pages/about_me/academic_section_widget.dart';
 import 'package:david_portfolio_app/src/view/pages/about_me/experience_section_widget.dart';
 import 'package:david_portfolio_app/src/view/pages/about_me/hello_section_widget.dart';
@@ -68,25 +69,25 @@ class _AboutMePageState extends State<AboutMePage> {
       {
         'type' : AboutMeSection.hello,
         'icon': Icons.person,
-        'text': 'Hello',
+        'text': languageController.language.aboutMeSection0,
         'event': () => _openSection(AboutMeSection.hello)
       },
       {
         'type' : AboutMeSection.experience,
         'icon': Icons.cases_outlined,
-        'text': 'Experience',
+        'text': languageController.language.aboutMeSection1,
         'event': () => _openSection(AboutMeSection.experience)
       },
       {
         'type' : AboutMeSection.academmic,
         'icon': Icons.menu_book_rounded,
-        'text': 'Academic',
+        'text': languageController.language.aboutMeSection2,
         'event': () => _openSection(AboutMeSection.academmic)
       },
       {
         'type' : AboutMeSection.hobbies,
         'icon': Icons.star_rate_rounded,
-        'text': 'Hobbies',
+        'text': languageController.language.aboutMeSection3,
         'event': () => _openSection(AboutMeSection.hobbies)
       },
     ];
@@ -111,9 +112,9 @@ class _AboutMePageState extends State<AboutMePage> {
           const SizedBox( height: 15 ),
 
           // TITLE
-          const Text(
-            'About me',
-            style: TextStyle(
+          Text(
+            languageController.language.aboutMeTitle,
+            style: const TextStyle(
               fontSize: 34,
               color: Colors.white,
               fontFamily: 'Gilroy-Bold-120',
@@ -171,7 +172,7 @@ class _AboutMePageState extends State<AboutMePage> {
   Widget _showContent() {
     Map<AboutMeSection, Widget> contents = {
       AboutMeSection.hello: const HelloSectionWidget(),
-      AboutMeSection.experience: ExperiencieSectionWidget(),
+      AboutMeSection.experience: const ExperiencieSectionWidget(),
       AboutMeSection.academmic: const AcademicSectionWidget(),
       AboutMeSection.hobbies: const HobbiesSectionWidget(),
     };

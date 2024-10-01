@@ -1,3 +1,4 @@
+import 'package:david_portfolio_app/src/controller/language_controller.dart';
 import 'package:david_portfolio_app/src/view/pages/main_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -95,13 +96,13 @@ class _WelcomePageState extends State<WelcomePage> with SingleTickerProviderStat
                       child: SizedBox(
                         width: constraints.maxWidth,
                         height: constraints.maxHeight,
-                        child: const FittedBox(
+                        child: FittedBox(
                           fit: BoxFit.fitHeight,
                           child: RotatedBox(
                             quarterTurns: -1,
                             child: Text(
-                              ' Welcome ',
-                              style: TextStyle(
+                              ' ${languageController.language.welcomeTitle} ',
+                              style: const TextStyle(
                                 fontSize: 100,
                                 color: Color.fromRGBO(255, 255, 255, 0.9),
                                 fontFamily: 'Gilroy-Bold-120',
