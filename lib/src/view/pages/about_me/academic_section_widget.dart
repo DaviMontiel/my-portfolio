@@ -8,6 +8,11 @@ class AcademicSectionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> studies = [
       {
+        "site": "Udemy",
+        "years": "2023",
+        "name": 'NestJS Zero to Hero - Modern TS Back-end Development',
+      },
+      {
         "site": "I.E.S. Politécnico Jesús Marín",
         "years": "2021 - 2023",
         "name": 'Ciclo Formativo de Grado Superior, Desarrollo de aplicaciones Multiplataforma',
@@ -27,56 +32,72 @@ class AcademicSectionWidget extends StatelessWidget {
       },
     ];
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Table(
+      columnWidths: const {
+        0: IntrinsicColumnWidth(),
+      },
       children: [
-        for (int f=0; f<studies.length; f++)
-          ...[
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  studies[f]['years'],
-                  style: const TextStyle(
-                    color: Color.fromRGBO(98, 114, 137, 1),
-                    fontFamily: 'Gilroy-Bold-120',
-                    fontSize: 14,
+        for (int f=0; f<studies.length; f++) ...[
+          TableRow(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    studies[f]['years'],
+                    style: const TextStyle(
+                      color: Color.fromRGBO(98, 114, 137, 1),
+                      fontFamily: 'Gilroy-Bold-120',
+                      fontSize: 14,
+                    ),
                   ),
-                ),
+                ],
+              ),
 
-                const SizedBox( width: 20 ),
-
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        studies[f]['site'],
-                        style: const TextStyle(
-                          color: Color.fromRGBO(51, 70, 100, 1),
-                          fontFamily: 'Gilroy-Bold-120',
-                          fontSize: 16,
-                        ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, bottom: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      studies[f]['site'],
+                      style: const TextStyle(
+                        color: Color.fromRGBO(51, 70, 100, 1),
+                        fontFamily: 'Gilroy-Bold-120',
+                        fontSize: 18,
                       ),
-
-                      const SizedBox( height: 15 ),
-
+                    ),
+                
+                    const SizedBox( height: 10 ),
+                
+                    Text(
+                      studies[f]['name'],
+                      style: const TextStyle(
+                        color: Color.fromRGBO(98, 114, 137, 1),
+                        fontFamily: 'Gilroy-Bold-120',
+                        fontSize: 16,
+                      ),
+                    ),
+                
+                    if (studies[f]['grade'] != null) ...[
+                      const SizedBox( height: 5 ),
+                
                       Text(
-                        studies[f]['name'],
+                        'Nota: ${studies[f]['grade']}',
                         style: const TextStyle(
-                          color: Color.fromRGBO(51, 70, 100, 1),
+                          color: Color.fromRGBO(98, 114, 137, 1),
                           fontFamily: 'Gilroy-Bold-120',
                           fontSize: 14,
+                          fontStyle: FontStyle.italic,
                         ),
                       ),
-                    ],
-                  ),
+                    ]
+                  ],
                 ),
-              ],
-            ),
-
-            const SizedBox( height: 30 ),
-          ],
+              ),
+            ],
+          ),
+        ],
       ],
     );
   }

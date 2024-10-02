@@ -81,7 +81,7 @@ class ExperiencieSectionWidget extends StatelessWidget {
                 style: const TextStyle(
                   color: Color.fromRGBO(98, 114, 137, 1),
                   fontFamily: 'Gilroy-Bold-120',
-                  fontSize: 14,
+                  fontSize: 16,
                 ),
               ),
 
@@ -92,7 +92,7 @@ class ExperiencieSectionWidget extends StatelessWidget {
                 Column(
                   children: [
                     if (d != experience[f]['apps'][d].length-1)
-                      Container(height: 15),
+                      const SizedBox(height: 15),
 
                     GestureDetector(
                       onTap: () {
@@ -156,6 +156,7 @@ class ExperiencieSectionWidget extends StatelessWidget {
                                     style: const TextStyle(
                                       color: Color.fromRGBO(98, 114, 137, 1),
                                       fontFamily: 'Gilroy-Bold-120',
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ),

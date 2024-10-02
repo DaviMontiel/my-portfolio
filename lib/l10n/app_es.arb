@@ -23,7 +23,7 @@
 
     "experienceYearPresent": "Presente",
     "experienceJob0Title": "Desarrollador Full Stack",
-    "experienceJob0Content": "Actualmente, trabajo como Desarrollador Full Stack, creando aplicaciones nativas, páginas web y servicios como brokers, APIs y sistemas de gestión de bases de datos (SGBD).\n\nAlgunos de mis proyectos:",
+    "experienceJob0Content": "Actualmente, trabajo como Coodinador de proyectos y Desarrollador Full Stack, creando aplicaciones nativas, páginas web y servicios como brokers, APIs y sistemas de gestión de bases de datos.\n\nAlgunos de mis proyectos:",
     "experienceJob0App0Content": "Aplicación que interactua con estaciones físicas permitiendo aparcar y cargar patinetes o bicicletas.\n\nMe encargué del desarrollo completo de la app, API, web, SGBD y de la infraestructura.\n\nAlgunos de los recursos utilizados fueron: Flutter, Firebase, .NET, MQTT,  SQLServer, Azure ...",
     "experienceJob0App1Content": "Aplicación que optimiza el consumo de agua en instalaciones como casas y edificios.\n\nCoordiné el desarrollo del proyecto, corriguiendo e implantando nuevas caracteristicas y utilizando diferentes métodos de gestión de tareas para el equipo.\n\nAlgunos de los recursos utilizados fueron: Flutter, Firebase, NestJS, MQTT, Angular, MySQL, AWS ...",
     "experienceJob1Title": "Técnico en Sistemas Informáticos",

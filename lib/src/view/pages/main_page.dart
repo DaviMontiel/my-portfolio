@@ -77,7 +77,7 @@ class _MainPageState extends State<MainPage> {
   Future<void> _typeKeys() async {
     visibleKeys[1] = true;
     setState(() {});
-    await Future.delayed(const Duration(milliseconds: 1000));
+    await Future.delayed(const Duration(milliseconds: 700));
     visibleKeys[0] = true;
     setState(() {});
   }

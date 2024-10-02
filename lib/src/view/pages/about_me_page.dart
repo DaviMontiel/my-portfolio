@@ -177,16 +177,47 @@ class _AboutMePageState extends State<AboutMePage> {
       AboutMeSection.hobbies: const HobbiesSectionWidget(),
     };
 
-    return Container(
-      padding: const EdgeInsets.all(30),
-      decoration: const BoxDecoration(
-        color: Color.fromRGBO(244, 248, 252, 1),
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(40),
-          topRight: Radius.circular(40),
+    double screenHeight = MediaQuery.of(context).size.height;
+    double initialPositionX = 0;
+    double initialPositionY = 0;
+    return GestureDetector(
+      onHorizontalDragStart: (details) {
+        initialPositionX = details.globalPosition.dx;
+        initialPositionY = details.globalPosition.dy;
+      },
+      onHorizontalDragEnd: (details) {
+        // Calculate the margin of 10% of the screen height
+        double verticalThreshold = screenHeight * 0.05;
+
+        // Calculate the displacement
+        double deltaY = details.globalPosition.dy - initialPositionY;
+        double deltaX = details.globalPosition.dx - initialPositionX;
+
+        // Check if the vertical displacement exceeds the threshold
+        if (deltaY.abs() <= verticalThreshold) {
+          // If the vertical displacement is within the limit
+          if (deltaX > 0) {
+            if (_currentSection.index == 0) return;
+            _currentSection = AboutMeSection.fromIndex(_currentSection.index-1);
+          } else if (deltaX < 0) {
+            if (_currentSection.index == contents.length-1) return;
+            _currentSection = AboutMeSection.fromIndex(_currentSection.index+1);
+          }
+
+          setState(() {});
+        }
+      },
+      child: Container(
+        padding: const EdgeInsets.all(30),
+        decoration: const BoxDecoration(
+          color: Color.fromRGBO(244, 248, 252, 1),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(40),
+            topRight: Radius.circular(40),
+          ),
         ),
+        child: contents[_currentSection],
       ),
-      child: contents[_currentSection],
     );
   }
 

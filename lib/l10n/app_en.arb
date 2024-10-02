@@ -23,7 +23,7 @@
 
     "experienceYearPresent": "Present",
     "experienceJob0Title": "Full Stack Developer",
-    "experienceJob0Content": "Currently, I work as a Full Stack Developer, creating native applications, websites, and services such as brokers, APIs, and database management systems (DBMS).\n\nSome of my projects:",
+    "experienceJob0Content": "Currently, I work as a Proyect Manager and Full Stack Developer, creating native applications, websites, and services such as brokers, APIs, and database management systems (DBMS).\n\nSome of my projects:",
     "experienceJob0App0Content": "An application that interacts with physical stations allowing the parking and charging of scooters or bicycles.\n\nI was responsible for the complete development of the app, API, web, database management system, and infrastructure.\n\nSome of the resources used were: Flutter, Firebase, .NET, MQTT, SQL Server, Azure ...",
     "experienceJob0App1Content": "An application that optimizes water consumption in facilities such as homes and buildings.\n\nI coordinated the project development, correcting and implementing new features while utilizing different task management methods for the team.\n\nSome of the resources used were: Flutter, Firebase, NestJS, MQTT, Angular, MySQL, AWS ...",
     "experienceJob1Title": "Computer Systems Technician",

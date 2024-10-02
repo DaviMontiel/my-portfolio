@@ -2,5 +2,9 @@ enum AboutMeSection {
   hello,
   experience,
   academmic,
-  hobbies,
+  hobbies;
+
+  static AboutMeSection fromIndex(int index) {
+    return AboutMeSection.values[index];
+  }
 }
