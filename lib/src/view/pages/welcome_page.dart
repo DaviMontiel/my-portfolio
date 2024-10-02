@@ -15,6 +15,7 @@ class _WelcomePageState extends State<WelcomePage> with SingleTickerProviderStat
   late AnimationController _controller;
   late Animation<double> _animation;
   bool _isVisible = false;
+  bool _openingNewWindow = false;
 
 
   @override
@@ -38,7 +39,7 @@ class _WelcomePageState extends State<WelcomePage> with SingleTickerProviderStat
     });
 
     Future.delayed(const Duration(milliseconds: 3000), () {
-      if (!mounted) return;
+      if (!mounted || _openingNewWindow) return;
 
       Navigator.of(context).pushReplacement(
         CupertinoPageRoute(
@@ -61,6 +62,7 @@ class _WelcomePageState extends State<WelcomePage> with SingleTickerProviderStat
     return Scaffold(
       body: GestureDetector(
         onTap: () {
+          _openingNewWindow= true;
           Navigator.of(context).pushReplacement(
             CupertinoPageRoute(
               builder: (context) => const MainPage(),

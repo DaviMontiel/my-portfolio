@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 import 'package:david_portfolio_app/src/controller/external_controller.dart';
 import 'package:david_portfolio_app/src/controller/language_controller.dart';
@@ -17,6 +18,9 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
 
+  List<bool> visibleKeys = [false, false];
+  String displayedText = '';
+
   int currentIndex = 0;
   double opacity = 1.0;
   late String currentLanguage;
@@ -27,7 +31,55 @@ class _MainPageState extends State<MainPage> {
     currentLanguage = languageController.locale.languageCode;
     super.initState();
 
+    _startTypingName();
     Future.delayed(const Duration(seconds: 3), _updateText);
+  }
+
+  void _startTypingName() async {
+    await _type_(blinks: 4);
+    await _typeName();
+    await _type_(blinks: 6);
+    await _typeKeys();
+  }
+
+  Future<void> _type_({required int blinks}) async {
+    for (int f=0; f<blinks; f++) {
+      await Future.delayed(const Duration(milliseconds: 500));
+
+      if (f % 2 == 0) {
+        displayedText += '|';
+      } else {
+        displayedText = displayedText.substring(0, displayedText.length-1);
+      }
+
+      setState(() {});
+    }
+  }
+
+  Future<void> _typeName() async {
+    int currentNameIndex = 0;
+    String text = 'David Montiel';
+
+    displayedText += ' ';
+    for (int f=0; f<text.length; f++) {
+      await Future.delayed(const Duration(milliseconds: 250));
+
+      displayedText = displayedText.substring(0, displayedText.length-1);
+      displayedText += '${text[currentNameIndex]}|';
+      currentNameIndex++;
+
+      setState(() {});
+    }
+
+    displayedText = displayedText.substring(0, displayedText.length-1);
+  }
+
+  Future<void> _typeKeys() async {
+    visibleKeys[1] = true;
+    setState(() {});
+    await Future.delayed(const Duration(milliseconds: 1000));
+    visibleKeys[0] = true;
+    setState(() {});
   }
 
   void _updateText() {
@@ -48,16 +100,16 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> links = [
       {
-        'icon': Icons.work_outlined,
-        'text': [languageController.language.manPageText2_0, languageController.language.manPageText2_1],
-        'color': const Color.fromRGBO(241, 152, 189, 1),
-        'event': () => _openAboutSection(AboutMeSection.experience)
-      },
-      {
         'icon': Icons.quick_contacts_mail_outlined,
         'text': [languageController.language.manPageText3_0, languageController.language.manPageText3_1],
-        'color': const Color.fromRGBO(125, 201, 211, 1),
+        'color': const Color.fromRGBO(241, 152, 189, 1),
         'event': () => _openAboutSection(AboutMeSection.hello)
+      },
+      {
+        'icon': Icons.work_outlined,
+        'text': [languageController.language.manPageText2_0, languageController.language.manPageText2_1],
+        'color': const Color.fromRGBO(125, 201, 211, 1),
+        'event': () => _openAboutSection(AboutMeSection.experience)
       },
       {
         'icon': Icons.wechat_rounded,
@@ -161,13 +213,39 @@ class _MainPageState extends State<MainPage> {
                     const SizedBox( height: 5 ),
               
                     // NAME
-                    const Text(
-                      'David Montiel',
-                      style: TextStyle(
-                        fontSize: 34,
-                        color: Color.fromRGBO(51, 70, 100, 1),
-                        fontFamily: 'Gilroy-Bold-120',
-                      ),
+                    Row(
+                      children: [
+                        Visibility(
+                          visible: visibleKeys[0],
+                          child: const Text(
+                            '{',
+                            style: TextStyle(
+                              fontSize: 34,
+                              color: Color.fromRGBO(21, 95, 255, 1),
+                              fontFamily: 'Gilroy-Bold-120',
+                            ),
+                          ),
+                        ),
+                        Text(
+                          displayedText,
+                          style: const TextStyle(
+                            fontSize: 34,
+                            color: Color.fromRGBO(51, 70, 100, 1),
+                            fontFamily: 'Gilroy-Bold-120',
+                          ),
+                        ),
+                        Visibility(
+                          visible: visibleKeys[1],
+                          child: const Text(
+                            '}',
+                            style: TextStyle(
+                              fontSize: 34,
+                              color: Color.fromRGBO(21, 95, 255, 1),
+                              fontFamily: 'Gilroy-Bold-120',
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
               
                     // WORK
