@@ -10,24 +10,24 @@ class AcademicSectionWidget extends StatelessWidget {
       {
         "site": "Udemy",
         "years": "2023",
-        "name": 'NestJS Zero to Hero - Modern TS Back-end Development',
+        "name": languageController.language.academicStudy0Name,
       },
       {
         "site": "I.E.S. Politécnico Jesús Marín",
         "years": "2021 - 2023",
-        "name": 'Ciclo Formativo de Grado Superior, Desarrollo de aplicaciones Multiplataforma',
+        "name": languageController.language.academicStudy1Name,
         "grade": "9.2",
       },
       {
         'site': 'I.E.S. Politécnico Jesús Marín',
         'years': '2019 - 2021',
-        'name': 'Ciclo Formativo de Grado Medio, Sistemas Microinformáticos y Redes',
+        "name": languageController.language.academicStudy2Name,
         "grade": "8.96",
       },
       {
         'site': 'I.E.S. Salvador Ruedas',
         'years': '2015 - 2019',
-        'name': 'Educación Secundaria Obligatoria (ESO)',
+        "name": languageController.language.academicStudy3Name,
         "grade": "6.07",
       },
     ];
@@ -83,7 +83,7 @@ class AcademicSectionWidget extends StatelessWidget {
                       const SizedBox( height: 5 ),
                 
                       Text(
-                        'Nota: ${studies[f]['grade']}',
+                        '${languageController.language.academicStudyGrade} ${studies[f]['grade']}',
                         style: const TextStyle(
                           color: Color.fromRGBO(98, 114, 137, 1),
                           fontFamily: 'Gilroy-Bold-120',

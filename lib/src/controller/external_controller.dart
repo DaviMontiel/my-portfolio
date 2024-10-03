@@ -7,12 +7,12 @@ class ExternalController {
     launchUrl(url);
   }
 
-  void openUrl(String link) {
+  void openUrl(String link, {LaunchMode mode = LaunchMode.externalApplication}) {
     final Uri url = Uri.parse(link);
 
     launchUrl(
       url,
-      mode: LaunchMode.inAppBrowserView,
+      mode: mode,
     );
   }
 }

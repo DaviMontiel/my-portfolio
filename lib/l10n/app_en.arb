@@ -14,12 +14,18 @@
     "manPageText3_1": "me",
     "manPageText4_0": "where",
     "manPageText4_1": "I am",
+    "manPageContactMail": "Email",
+    "manPageContactTel": "Phone",
     
     "aboutMeTitle": "About me",
     "aboutMeSection0": "Hello",
     "aboutMeSection1": "Experience",
     "aboutMeSection2": "Academic",
-    "aboutMeSection3": "Hobbies",
+    "aboutMeSection3": "Skills",
+
+    "helloTitle": "Hello, I am David!",
+    "helloText0": "A passionate software developer with experience in native application development and information systems. I was born in Málaga (Spain) and have been interested in technology and programming since I was young.",
+    "helloText1": "I have worked on several projects, serving as the Lead Coordinator and Full Stack Developer. I love learning about new technologies and facing challenges that allow me to grow professionally.",
 
     "experienceYearPresent": "Present",
     "experienceJob0Title": "Full Stack Developer",
@@ -27,5 +33,11 @@
     "experienceJob0App0Content": "An application that interacts with physical stations allowing the parking and charging of scooters or bicycles.\n\nI was responsible for the complete development of the app, API, web, database management system, and infrastructure.\n\nSome of the resources used were: Flutter, Firebase, .NET, MQTT, SQL Server, Azure ...",
     "experienceJob0App1Content": "An application that optimizes water consumption in facilities such as homes and buildings.\n\nI coordinated the project development, correcting and implementing new features while utilizing different task management methods for the team.\n\nSome of the resources used were: Flutter, Firebase, NestJS, MQTT, Angular, MySQL, AWS ...",
     "experienceJob1Title": "Computer Systems Technician",
-    "experienceJob1Content": "At Vivatech, I worked as a Computer Technician, focusing on the repair of computers, laptops, and tablets. My role involved diagnosing and troubleshooting both software and hardware issues, ensuring that the devices operated efficiently."
+    "experienceJob1Content": "At Vivatech, I worked as a Computer Technician, focusing on the repair of computers, laptops, and tablets. My role involved diagnosing and troubleshooting both software and hardware issues, ensuring that the devices operated efficiently.",
+    
+    "academicStudy0Name": "NestJS Zero to Hero - Modern TS Back-end Development",
+    "academicStudy1Name": "Higher Vocational Training Degree, Multiplatform Application Development",
+    "academicStudy2Name": "Intermediate Vocational Training Degree, Microcomputer Systems and Networks",
+    "academicStudy3Name": "Compulsory Secondary Education (ESO)",
+    "academicStudyGrade": "Grade:"
 }

@@ -318,7 +318,7 @@ class _MainPageState extends State<MainPage> {
                         ),
                                     
                         GestureDetector(
-                          onTap: () => externalController.makePhoneCall('633054283'),
+                          onTap: _showContactToMePopup,
                           child: Container(
                             decoration: const BoxDecoration(
                               color: Color.fromRGBO(189, 131, 255, 1),
@@ -475,6 +475,111 @@ class _MainPageState extends State<MainPage> {
         ),
       ),
     ];
+  }
+
+  void _showContactToMePopup() {
+    List<Map<String, dynamic>> methods = [
+      {
+        'icon': 'lib/assets/images/app_whatsapp.png',
+        'color': const Color.fromARGB(255, 164, 255, 128),
+        'text': 'WhatsApp',
+        'event': () => externalController.openUrl('https://wa.me/+034633054283'),
+      },
+      {
+        'icon': 'lib/assets/images/app_mail.png',
+        'color': const Color.fromARGB(255, 253, 166, 166),
+        'text': languageController.language.manPageContactMail,
+        'event': () => externalController.openUrl('mailto:davidmontielnieto1@gmail.es'),
+      },
+      {
+        'icon': 'lib/assets/images/app_tel.png',
+        'color': const Color.fromARGB(255, 196, 222, 255),
+        'text': languageController.language.manPageContactTel,
+        'event': () => externalController.makePhoneCall('+34633054283'),
+      },
+    ];
+
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: Colors.white,
+      builder: (BuildContext context) {
+        return Container(
+          height: 140,
+          width: double.infinity,
+          padding: const EdgeInsets.only(top: 10),
+          child: Column(
+            children: [
+              // LINE
+              Container(
+                width: 100,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  border: Border.all(
+                    color: const Color.fromARGB(255, 219, 219, 219),
+                    width: 2,
+                  ),
+                ),
+              ),
+
+              const Expanded(
+                child: SizedBox(),
+              ),
+
+              // CONTENT
+              Padding(
+                padding: const EdgeInsets.only(left: 25),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (int f=0; f<methods.length; f++) ...[
+                      GestureDetector(
+                        onTap: methods[f]['event'],
+                        child: Container(
+                          color: Colors.transparent,
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 60,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: methods[f]['color'],
+                                ),
+                                child: Center(
+                                  child: Image.asset(
+                                    methods[f]['icon'],
+                                    width: 40,
+                                  ),
+                                ),
+                              ),
+                                          
+                              const SizedBox( height: 10 ),
+                                          
+                              Text(
+                                methods[f]['text'],
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Color.fromARGB(255, 153, 153, 153),
+                                  fontFamily: 'Gilroy-Bold-120',
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox( width: 25 ),
+                    ],
+                  ],
+                ),
+              ),
+
+              const SizedBox( height: 10 ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   void _updateView() {

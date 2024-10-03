@@ -14,12 +14,18 @@
     "manPageText3_1": "mi",
     "manPageText4_0": "de",
     "manPageText4_1": "donde soy",
+    "manPageContactMail": "Correo",
+    "manPageContactTel": "Teléfono",
 
     "aboutMeTitle": "Sobre mi",
     "aboutMeSection0": "Hola",
     "aboutMeSection1": "Trabajos",
     "aboutMeSection2": "Estudios",
-    "aboutMeSection3": "Hobbies",
+    "aboutMeSection3": "Aptitudes",
+
+    "helloTitle": "¡Hola, Soy David!",
+    "helloText0": "Un apasionado desarrollador de software con experiencia en el desarrollo de aplicaciones nativas y sistemas informaticos. Nací en Málaga (España) y desde joven me interesé por la tecnología y la programación.",
+    "helloText1": "He trabajado en varios proyectos, siendo el Coordinador principal y Desarrollador Full Stack. Me encanta aprender sobre nuevas tecnologías y enfrentar desafíos que me permitan crecer profesionalmente.",
 
     "experienceYearPresent": "Presente",
     "experienceJob0Title": "Desarrollador Full Stack",
@@ -27,5 +33,11 @@
     "experienceJob0App0Content": "Aplicación que interactua con estaciones físicas permitiendo aparcar y cargar patinetes o bicicletas.\n\nMe encargué del desarrollo completo de la app, API, web, SGBD y de la infraestructura.\n\nAlgunos de los recursos utilizados fueron: Flutter, Firebase, .NET, MQTT,  SQLServer, Azure ...",
     "experienceJob0App1Content": "Aplicación que optimiza el consumo de agua en instalaciones como casas y edificios.\n\nCoordiné el desarrollo del proyecto, corriguiendo e implantando nuevas caracteristicas y utilizando diferentes métodos de gestión de tareas para el equipo.\n\nAlgunos de los recursos utilizados fueron: Flutter, Firebase, NestJS, MQTT, Angular, MySQL, AWS ...",
     "experienceJob1Title": "Técnico en Sistemas Informáticos",
-    "experienceJob1Content": "En Vivatech, trabajé como Técnico en Sistemas Informáticos, centrándome en la reparación de computadoras, laptops y tablets. Mi rol incluía diagnosticar y solucionar problemas tanto de software como de hardware, asegurando que los dispositivos funcionaran de manera eficiente."
+    "experienceJob1Content": "En Vivatech, trabajé como Técnico en Sistemas Informáticos, centrándome en la reparación de computadoras, laptops y tablets. Mi rol incluía diagnosticar y solucionar problemas tanto de software como de hardware, asegurando que los dispositivos funcionaran de manera eficiente.",
+
+    "academicStudy0Name": "NestJS Zero to Hero - Modern TS Back-end Development",
+    "academicStudy1Name": "Ciclo Formativo de Grado Superior, Desarrollo de aplicaciones Multiplataforma",
+    "academicStudy2Name": "Ciclo Formativo de Grado Medio, Sistemas Microinformáticos y Redes",
+    "academicStudy3Name": "Educación Secundaria Obligatoria (ESO)",
+    "academicStudyGrade": "Nota:"
 }
