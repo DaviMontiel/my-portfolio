@@ -39,5 +39,7 @@
     "academicStudy1Name": "Higher Vocational Training Degree, Multiplatform Application Development",
     "academicStudy2Name": "Intermediate Vocational Training Degree, Microcomputer Systems and Networks",
     "academicStudy3Name": "Compulsory Secondary Education (ESO)",
-    "academicStudyGrade": "Grade:"
+    "academicStudyGrade": "Grade:",
+
+    "skillsText0": "+--------------------------------------+\n|           Developer Skills           |\n|--------------------------------------|\n| • Agile Development                  |\n| • Frameworks:                        |\n|    Flutter, Angular, NestJS.         |\n| • UI/UX Design                       |\n| • Programming:                       |\n|    Java, Kotlin, Dart, C, C++, C#,   |\n|    PHP, TypeScript, Python...        |\n| • Databases:                         |\n|    MariaDB, MySQL, SQLite, PostgreSQL|\n| • Version Control:                   |\n|    Git, GitHub, Bitbucket.           |\n| • APIs (RESTful, GraphQL)            |\n| • Software Testing                   |\n| • Continuous Integration (CI/CD)     |\n| • Problem Solving                    |\n| • Collaboration                      |\n| • Adaptability                       |\n| • Methodologies (TDD, Backlog)       |\n| • Security                           |\n|--------------------------------------|\n|         [ Close ]  [ Save Changes ]  |\n+--------------------------------------+"
 }

@@ -58,7 +58,7 @@ class _MainPageState extends State<MainPage> {
 
   Future<void> _typeName() async {
     int currentNameIndex = 0;
-    String text = 'David Montiel';
+    String text = 'David Montiel Nieto';
 
     displayedText += ' ';
     for (int f=0; f<text.length; f++) {
@@ -215,34 +215,46 @@ class _MainPageState extends State<MainPage> {
                     // NAME
                     Row(
                       children: [
-                        Visibility(
-                          visible: visibleKeys[0],
-                          child: const Text(
-                            '{',
-                            style: TextStyle(
-                              fontSize: 34,
-                              color: Color.fromRGBO(21, 95, 255, 1),
-                              fontFamily: 'Gilroy-Bold-120',
-                            ),
-                          ),
-                        ),
-                        Text(
-                          displayedText,
-                          style: const TextStyle(
+                        const Text(
+                          '',
+                          style: TextStyle(
                             fontSize: 34,
                             color: Color.fromRGBO(51, 70, 100, 1),
                             fontFamily: 'Gilroy-Bold-120',
                           ),
                         ),
-                        Visibility(
-                          visible: visibleKeys[1],
-                          child: const Text(
-                            '}',
-                            style: TextStyle(
-                              fontSize: 34,
-                              color: Color.fromRGBO(21, 95, 255, 1),
-                              fontFamily: 'Gilroy-Bold-120',
-                            ),
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              if (visibleKeys[0]) ...[
+                                const TextSpan(
+                                  text: '{',
+                                  style: TextStyle(
+                                    fontSize: 34,
+                                    color: Color.fromRGBO(21, 95, 255, 1),
+                                    fontFamily: 'Gilroy-Bold-120',
+                                  ),
+                                ),
+                              ],
+                              TextSpan(
+                                text: displayedText,
+                                style: const TextStyle(
+                                  fontSize: 34,
+                                  color: Color.fromRGBO(51, 70, 100, 1),
+                                  fontFamily: 'Gilroy-Bold-120',
+                                ),
+                              ),
+                              if (visibleKeys[1]) ...[
+                                const TextSpan(
+                                  text: '}',
+                                  style: TextStyle(
+                                    fontSize: 34,
+                                    color: Color.fromRGBO(21, 95, 255, 1),
+                                    fontFamily: 'Gilroy-Bold-120',
+                                  ),
+                                ),
+                              ],
+                            ],
                           ),
                         ),
                       ],
@@ -490,12 +502,14 @@ class _MainPageState extends State<MainPage> {
         'color': const Color.fromARGB(255, 253, 166, 166),
         'text': languageController.language.manPageContactMail,
         'event': () => externalController.openUrl('mailto:davidmontielnieto1@gmail.es'),
+        'space': 30.0,
       },
       {
         'icon': 'lib/assets/images/app_tel.png',
         'color': const Color.fromARGB(255, 196, 222, 255),
         'text': languageController.language.manPageContactTel,
         'event': () => externalController.makePhoneCall('+34633054283'),
+        'space': 30.0,
       },
     ];
 
@@ -568,7 +582,7 @@ class _MainPageState extends State<MainPage> {
                         ),
                       ),
 
-                      const SizedBox( width: 25 ),
+                      SizedBox( width: methods[f]['space'] ?? 25.0 ),
                     ],
                   ],
                 ),
