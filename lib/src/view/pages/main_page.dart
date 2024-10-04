@@ -19,7 +19,8 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
 
   List<bool> visibleKeys = [false, false];
-  String displayedText = '';
+  bool showingSecondLastName = false;
+  String userName = '';
 
   int currentIndex = 0;
   double opacity = 1.0;
@@ -47,9 +48,9 @@ class _MainPageState extends State<MainPage> {
       await Future.delayed(const Duration(milliseconds: 500));
 
       if (f % 2 == 0) {
-        displayedText += '|';
+        userName += '|';
       } else {
-        displayedText = displayedText.substring(0, displayedText.length-1);
+        userName = userName.substring(0, userName.length-1);
       }
 
       setState(() {});
@@ -58,20 +59,20 @@ class _MainPageState extends State<MainPage> {
 
   Future<void> _typeName() async {
     int currentNameIndex = 0;
-    String text = 'David Montiel Nieto';
+    String name = 'David Montiel';
 
-    displayedText += ' ';
-    for (int f=0; f<text.length; f++) {
+    userName += ' ';
+    for (int f=0; f<name.length; f++) {
       await Future.delayed(const Duration(milliseconds: 250));
 
-      displayedText = displayedText.substring(0, displayedText.length-1);
-      displayedText += '${text[currentNameIndex]}|';
+      userName = userName.substring(0, userName.length-1);
+      userName += '${name[currentNameIndex]}|';
       currentNameIndex++;
 
       setState(() {});
     }
 
-    displayedText = displayedText.substring(0, displayedText.length-1);
+    userName = userName.substring(0, userName.length-1);
   }
 
   Future<void> _typeKeys() async {
@@ -148,7 +149,17 @@ class _MainPageState extends State<MainPage> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            print('-- toca');
+                            if (!visibleKeys[0]) return;
+
+                            String secondLastName = ' Nieto';
+                            if (showingSecondLastName) {
+                              userName = userName.substring(0, userName.length - secondLastName.length);
+                            } else {
+                              userName += secondLastName;
+                            }
+
+                            showingSecondLastName = !showingSecondLastName;
+                            setState(() {});
                           },
                           child: Container(
                             color: Colors.transparent,
@@ -223,38 +234,40 @@ class _MainPageState extends State<MainPage> {
                             fontFamily: 'Gilroy-Bold-120',
                           ),
                         ),
-                        RichText(
-                          text: TextSpan(
-                            children: [
-                              if (visibleKeys[0]) ...[
-                                const TextSpan(
-                                  text: '{',
-                                  style: TextStyle(
+                        Expanded(
+                          child: RichText(
+                            text: TextSpan(
+                              children: [
+                                if (visibleKeys[0]) ...[
+                                  const TextSpan(
+                                    text: '{',
+                                    style: TextStyle(
+                                      fontSize: 34,
+                                      color: Color.fromRGBO(21, 95, 255, 1),
+                                      fontFamily: 'Gilroy-Bold-120',
+                                    ),
+                                  ),
+                                ],
+                                TextSpan(
+                                  text: userName,
+                                  style: const TextStyle(
                                     fontSize: 34,
-                                    color: Color.fromRGBO(21, 95, 255, 1),
+                                    color: Color.fromRGBO(51, 70, 100, 1),
                                     fontFamily: 'Gilroy-Bold-120',
                                   ),
                                 ),
-                              ],
-                              TextSpan(
-                                text: displayedText,
-                                style: const TextStyle(
-                                  fontSize: 34,
-                                  color: Color.fromRGBO(51, 70, 100, 1),
-                                  fontFamily: 'Gilroy-Bold-120',
-                                ),
-                              ),
-                              if (visibleKeys[1]) ...[
-                                const TextSpan(
-                                  text: '}',
-                                  style: TextStyle(
-                                    fontSize: 34,
-                                    color: Color.fromRGBO(21, 95, 255, 1),
-                                    fontFamily: 'Gilroy-Bold-120',
+                                if (visibleKeys[1]) ...[
+                                  const TextSpan(
+                                    text: '}',
+                                    style: TextStyle(
+                                      fontSize: 34,
+                                      color: Color.fromRGBO(21, 95, 255, 1),
+                                      fontFamily: 'Gilroy-Bold-120',
+                                    ),
                                   ),
-                                ),
+                                ],
                               ],
-                            ],
+                            ),
                           ),
                         ),
                       ],
