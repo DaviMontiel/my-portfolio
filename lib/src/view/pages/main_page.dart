@@ -126,328 +126,331 @@ class _MainPageState extends State<MainPage> {
       languageController.language.job2,
     ];
 
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(204, 221, 241, 1),
-      body: Stack(
-        children: [
-
-          // BACKGROUND
-          ..._background(),
-
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 45, left: 20, right: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // MENU BTN
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            if (!visibleKeys[0]) return;
-
-                            String secondLastName = ' Nieto';
-                            if (showingSecondLastName) {
-                              userName = userName.substring(0, userName.length - secondLastName.length);
-                            } else {
-                              userName += secondLastName;
-                            }
-
-                            showingSecondLastName = !showingSecondLastName;
-                            setState(() {});
-                          },
-                          child: Container(
-                            color: Colors.transparent,
-                            width: 25,
-                            height: 25,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      color: Colors.black,
-                                      width: 18,
-                                      height: 2,
-                                    ),
-                                    const SizedBox( height: 4 ),
-                                    Container(
-                                      color: Colors.black,
-                                      width: 12,
-                                      height: 2,
+    return ClipRect(
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: Scaffold(
+        backgroundColor: const Color.fromRGBO(204, 221, 241, 1),
+        body: Stack(
+          children: [
+      
+            // BACKGROUND
+            ..._background(),
+      
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 45, left: 20, right: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // MENU BTN
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              if (!visibleKeys[0]) return;
+      
+                              String secondLastName = ' Nieto';
+                              if (showingSecondLastName) {
+                                userName = userName.substring(0, userName.length - secondLastName.length);
+                              } else {
+                                userName += secondLastName;
+                              }
+      
+                              showingSecondLastName = !showingSecondLastName;
+                              setState(() {});
+                            },
+                            child: Container(
+                              color: Colors.transparent,
+                              width: 25,
+                              height: 25,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        color: Colors.black,
+                                        width: 18,
+                                        height: 2,
+                                      ),
+                                      const SizedBox( height: 4 ),
+                                      Container(
+                                        color: Colors.black,
+                                        width: 12,
+                                        height: 2,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+      
+                          PopupMenuButton<String>(
+                            menuPadding: EdgeInsets.zero,
+                            padding: EdgeInsets.zero,
+                            onSelected: (value) async {
+                              currentLanguage = value;
+                              await languageController.changeLanguage(value);
+      
+                              setState(() {});
+                            },
+                            itemBuilder: (context) => languageController.getSupportedLocales().map((locale) {
+                              return PopupMenuItem<String>(
+                                value: locale.languageCode,
+                                child: Center(
+                                  child: Image.asset(
+                                    'lib/assets/images/${locale.languageCode}_flag.png',
+                                    width: 35,
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                            child: Container(
+                              padding: const EdgeInsets.all(4),
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.all(Radius.circular(5)),
+                              ),
+                              child: Image.asset('lib/assets/images/${currentLanguage}_flag.png', width: 35),
+                            ),
+                          )
+                        ],
+                      ),
+                
+                      const SizedBox( height: 5 ),
+                
+                      // NAME
+                      Row(
+                        children: [
+                          const Text(
+                            '',
+                            style: TextStyle(
+                              fontSize: 34,
+                              color: Color.fromRGBO(51, 70, 100, 1),
+                              fontFamily: 'Gilroy-Bold-120',
+                            ),
+                          ),
+                          Expanded(
+                            child: RichText(
+                              text: TextSpan(
+                                children: [
+                                  if (visibleKeys[0]) ...[
+                                    const TextSpan(
+                                      text: '{',
+                                      style: TextStyle(
+                                        fontSize: 34,
+                                        color: Color.fromRGBO(21, 95, 255, 1),
+                                        fontFamily: 'Gilroy-Bold-120',
+                                      ),
                                     ),
                                   ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-
-                        PopupMenuButton<String>(
-                          menuPadding: EdgeInsets.zero,
-                          padding: EdgeInsets.zero,
-                          onSelected: (value) async {
-                            currentLanguage = value;
-                            await languageController.changeLanguage(value);
-
-                            setState(() {});
-                          },
-                          itemBuilder: (context) => languageController.getSupportedLocales().map((locale) {
-                            return PopupMenuItem<String>(
-                              value: locale.languageCode,
-                              child: Center(
-                                child: Image.asset(
-                                  'lib/assets/images/${locale.languageCode}_flag.png',
-                                  width: 35,
-                                ),
+                                  TextSpan(
+                                    text: userName,
+                                    style: const TextStyle(
+                                      fontSize: 34,
+                                      color: Color.fromRGBO(51, 70, 100, 1),
+                                      fontFamily: 'Gilroy-Bold-120',
+                                    ),
+                                  ),
+                                  if (visibleKeys[1]) ...[
+                                    const TextSpan(
+                                      text: '}',
+                                      style: TextStyle(
+                                        fontSize: 34,
+                                        color: Color.fromRGBO(21, 95, 255, 1),
+                                        fontFamily: 'Gilroy-Bold-120',
+                                      ),
+                                    ),
+                                  ],
+                                ],
                               ),
-                            );
-                          }).toList(),
-                          child: Container(
-                            padding: const EdgeInsets.all(4),
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(Radius.circular(5)),
                             ),
-                            child: Image.asset('lib/assets/images/${currentLanguage}_flag.png', width: 35),
                           ),
-                        )
-                      ],
-                    ),
-              
-                    const SizedBox( height: 5 ),
-              
-                    // NAME
-                    Row(
-                      children: [
-                        const Text(
-                          '',
-                          style: TextStyle(
-                            fontSize: 34,
-                            color: Color.fromRGBO(51, 70, 100, 1),
+                        ],
+                      ),
+                
+                      // WORK
+                      AnimatedOpacity(
+                        opacity: opacity,
+                        duration: const Duration(milliseconds: 200),
+                        child: Text(
+                          jobTitles[currentIndex],
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Color.fromRGBO(127, 154, 193, 1),
                             fontFamily: 'Gilroy-Bold-120',
                           ),
                         ),
-                        Expanded(
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                if (visibleKeys[0]) ...[
-                                  const TextSpan(
-                                    text: '{',
-                                    style: TextStyle(
-                                      fontSize: 34,
-                                      color: Color.fromRGBO(21, 95, 255, 1),
-                                      fontFamily: 'Gilroy-Bold-120',
-                                    ),
-                                  ),
-                                ],
-                                TextSpan(
-                                  text: userName,
-                                  style: const TextStyle(
-                                    fontSize: 34,
-                                    color: Color.fromRGBO(51, 70, 100, 1),
-                                    fontFamily: 'Gilroy-Bold-120',
-                                  ),
-                                ),
-                                if (visibleKeys[1]) ...[
-                                  const TextSpan(
-                                    text: '}',
-                                    style: TextStyle(
-                                      fontSize: 34,
-                                      color: Color.fromRGBO(21, 95, 255, 1),
-                                      fontFamily: 'Gilroy-Bold-120',
-                                    ),
-                                  ),
-                                ],
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-              
-                    // WORK
-                    AnimatedOpacity(
-                      opacity: opacity,
-                      duration: const Duration(milliseconds: 200),
-                      child: Text(
-                        jobTitles[currentIndex],
-                        style: const TextStyle(
-                          fontSize: 18,
-                          color: Color.fromRGBO(127, 154, 193, 1),
-                          fontFamily: 'Gilroy-Bold-120',
-                        ),
+                      ),
+                
+                    ],
+                  ),
+                ),
+      
+                Expanded(
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 30, right: 30),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        alignment: Alignment.bottomCenter,
+                        image: AssetImage('lib/assets/images/person.png'),
+                        // fit: BoxFit.fitHeight,
                       ),
                     ),
-              
-                  ],
+                  ),
                 ),
-              ),
-
-              Expanded(
-                child: Container(
-                  margin: const EdgeInsets.only(left: 30, right: 30),
+      
+                Container(
+                  height: 250,
+                  padding: const EdgeInsets.all(30),
                   decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      alignment: Alignment.bottomCenter,
-                      image: AssetImage('lib/assets/images/person.png'),
-                      // fit: BoxFit.fitHeight,
+                    color: Color.fromRGBO(244, 248, 252, 1),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40),
                     ),
                   ),
-                ),
-              ),
-
-              Container(
-                height: 250,
-                padding: const EdgeInsets.all(30),
-                decoration: const BoxDecoration(
-                  color: Color.fromRGBO(244, 248, 252, 1),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40),
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              languageController.language.manPageText0,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                color: Color.fromRGBO(98, 114, 137, 1),
-                                fontFamily: 'Gilroy-Bold-120',
-                              ),
-                            ),
-                            Text(
-                              languageController.language.manPageText1,
-                              style: const TextStyle(
-                                fontSize: 22,
-                                color: Color.fromRGBO(51, 70, 100, 1),
-                                fontFamily: 'Gilroy-Bold',
-                              ),
-                            ),
-                          ],
-                        ),
-                                    
-                        GestureDetector(
-                          onTap: _showContactToMePopup,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Color.fromRGBO(189, 131, 255, 1),
-                              borderRadius: BorderRadius.all(Radius.circular(25)),
-                            ),
-                            width: 150,
-                            height: 55,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const SizedBox( height: 5 ),
-                                Text(
-                                  languageController.language.manPageBtn0,
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontFamily: 'Gilroy-Bold-120',
-                                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                languageController.language.manPageText0,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Color.fromRGBO(98, 114, 137, 1),
+                                  fontFamily: 'Gilroy-Bold-120',
                                 ),
-                              ],
+                              ),
+                              Text(
+                                languageController.language.manPageText1,
+                                style: const TextStyle(
+                                  fontSize: 22,
+                                  color: Color.fromRGBO(51, 70, 100, 1),
+                                  fontFamily: 'Gilroy-Bold',
+                                ),
+                              ),
+                            ],
+                          ),
+                                      
+                          GestureDetector(
+                            onTap: _showContactToMePopup,
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                color: Color.fromRGBO(189, 131, 255, 1),
+                                borderRadius: BorderRadius.all(Radius.circular(25)),
+                              ),
+                              width: 150,
+                              height: 55,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const SizedBox( height: 5 ),
+                                  Text(
+                                    languageController.language.manPageBtn0,
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontFamily: 'Gilroy-Bold-120',
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    
-                    const SizedBox( height: 20 ),
-              
-                    Expanded(
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          for (int f=0; f<links.length; f++) ...[
-                            Row(
-                              children: [
-                                Container(
-                                  height: 120,
-                                  width: 110,
-                                  decoration: BoxDecoration(
-                                    color: links[f]['color'],
-                                    borderRadius: const BorderRadius.all(Radius.circular(20)),
-                                  ),
-                                  child: GestureDetector(
-                                    onTap: links[f]['event'],
-                                    child: Container(
-                                      color: Colors.transparent,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(top: 17, left: 15, bottom: 12),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Icon(
-                                              links[f]['icon'],
-                                              color: Colors.white,
-                                            ),
-                                            Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  links[f]['text'][0],
-                                                  style: const TextStyle(
-                                                    fontSize: 16,
-                                                    color: Colors.white,
-                                                    fontFamily: 'Gilroy-Bold',
+                        ],
+                      ),
+                      
+                      const SizedBox( height: 20 ),
+                
+                      Expanded(
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            for (int f=0; f<links.length; f++) ...[
+                              Row(
+                                children: [
+                                  Container(
+                                    height: 120,
+                                    width: 110,
+                                    decoration: BoxDecoration(
+                                      color: links[f]['color'],
+                                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                    ),
+                                    child: GestureDetector(
+                                      onTap: links[f]['event'],
+                                      child: Container(
+                                        color: Colors.transparent,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(top: 17, left: 15, bottom: 12),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Icon(
+                                                links[f]['icon'],
+                                                color: Colors.white,
+                                              ),
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    links[f]['text'][0],
+                                                    style: const TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.white,
+                                                      fontFamily: 'Gilroy-Bold',
+                                                    ),
                                                   ),
-                                                ),
-                                                Text(
-                                                  links[f]['text'][1],
-                                                  style: const TextStyle(
-                                                    fontSize: 16,
-                                                    color: Colors.white,
-                                                    fontFamily: 'Gilroy-Bold-120',
+                                                  Text(
+                                                    links[f]['text'][1],
+                                                    style: const TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.white,
+                                                      fontFamily: 'Gilroy-Bold-120',
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
-                                            )
-                                          ],
+                                                ],
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-
-                            if (f != links.length - 1) const SizedBox(width: 20),
-                          ]
-                        ],
-                        // children: links.map((link) {
-                          // return 
-              
-                        //       const SizedBox( width: 20 ),
-                        //     ],
-                        //   );
-                        // }).toList(),
+                                ],
+                              ),
+      
+                              if (f != links.length - 1) const SizedBox(width: 20),
+                            ]
+                          ],
+                          // children: links.map((link) {
+                            // return 
+                
+                          //       const SizedBox( width: 20 ),
+                          //     ],
+                          //   );
+                          // }).toList(),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
