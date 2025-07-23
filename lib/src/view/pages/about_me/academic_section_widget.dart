@@ -25,7 +25,7 @@ class AcademicSectionWidget extends StatelessWidget {
         "grade": "8.96",
       },
       {
-        'site': 'I.E.S. Salvador Ruedas',
+        'site': 'I.E.S. Salvador Rueda',
         'years': '2015 - 2019',
         "name": languageController.language.academicStudy3Name,
         "grade": "6.07",
