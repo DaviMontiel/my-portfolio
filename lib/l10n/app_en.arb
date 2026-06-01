@@ -29,11 +29,12 @@
 
     "experienceYearPresent": "Present",
     "experienceJob0Title": "Full Stack Developer",
-    "experienceJob0Content": "Currently, I work as a Proyect Manager and Full Stack Developer, creating native applications, websites, and services such as brokers, APIs, and database management systems (DBMS).\n\nSome of my projects:",
+    "experienceJob0Content": "I worked as a Proyect Manager and Full Stack Developer, creating native applications, websites, and services such as brokers, APIs, and database management systems (DBMS).\n\nSome of my projects:",
     "experienceJob0App0Content": "An application that interacts with physical stations allowing the parking and charging of scooters or bicycles.\n\nI was responsible for the complete development of the app, API, web, database management system, and infrastructure.\n\nSome of the resources used were: Flutter, Firebase, .NET, MQTT, SQL Server, Azure ...",
     "experienceJob0App1Content": "An application that optimizes water consumption in facilities such as homes and buildings.\n\nI coordinated the project development, correcting and implementing new features while utilizing different task management methods for the team.\n\nSome of the resources used were: Flutter, Firebase, NestJS, MQTT, Angular, MySQL, AWS ...",
     "experienceJob1Title": "Computer Systems Technician",
     "experienceJob1Content": "At Vivatech, I worked as a Computer Technician, focusing on the repair of computers, laptops, and tablets. My role involved diagnosing and troubleshooting both software and hardware issues, ensuring that the devices operated efficiently.",
+    "experienceJob2Content": "I am currently part of the development team at Tich Consulting, contributing to the maintenance and evolution of a large-scale healthcare management platform for ASISA.\n\nI work alongside a multidisciplinary team of more than 30 developers, participating in the development of new features, continuous product improvements, and the resolution of critical issues reported by end users.\n\nMy responsibilities include developing and maintaining web applications using Angular (JavaScript and TypeScript), as well as designing and implementing REST APIs with Express and Node.js. I also manage and optimize PostgreSQL databases, ensuring data integrity, security, and performance. In addition, I analyze and resolve incidents through Odoo and oversee the full development lifecycle using Azure DevOps, working with repositories, Pull Requests, work items, and deployment pipelines to ensure efficient and high-quality software delivery.",
     
     "academicStudy0Name": "NestJS Zero to Hero - Modern TS Back-end Development",
     "academicStudy1Name": "Higher Vocational Training Degree, Multiplatform Application Development",

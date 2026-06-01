@@ -9,8 +9,14 @@ class ExperiencieSectionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> experience = [
       {
+        'company': 'Tich Consulting',
+        'years': '2025 - ${languageController.language.experienceYearPresent}',
+        'job': languageController.language.experienceJob0Title,
+        'description': languageController.language.experienceJob2Content,
+      },
+      {
         "company": "Metrica6",
-        "years": "2023 - ${languageController.language.experienceYearPresent}",
+        "years": "2023 - 2025",
         "job": languageController.language.experienceJob0Title,
         "description": languageController.language.experienceJob0Content,
         "apps": [
